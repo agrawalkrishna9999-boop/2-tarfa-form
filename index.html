@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
 
         :root {
             --primary: #ff4d6d;
-            --dark-bg: #0a0e27;
+            --dark-bg: #0b0b0d;
             --card-bg: rgba(255, 255, 255, 0.05);
             --border: rgba(255, 255, 255, 0.1);
             --text-primary: #ffffff;
@@ -23,7 +23,7 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, var(--dark-bg) 0%, #1a1f3a 100%);
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #18181d 100%);
             color: var(--text-primary);
             min-height: 100vh;
             padding: 20px;
@@ -212,7 +212,345 @@
             transform: translateX(4px);
         }
 
-< truncated lines 215-541 >
+        .radio-option input,
+        .checkbox-option input {
+            margin-right: 12px;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+        }
+
+        .radio-option input:checked + span,
+        .checkbox-option input:checked + span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .radio-option input:checked,
+        .checkbox-option input:checked {
+            filter: drop-shadow(0 0 4px var(--primary));
+        }
+
+        /* ===== SLIDER ===== */
+        .slider-container {
+            margin-top: 14px;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(to right, rgba(255, 77, 109, 0.2), rgba(255, 77, 109, 0.3));
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 77, 109, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 25px rgba(255, 77, 109, 0.6);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 15px rgba(255, 77, 109, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        input[type="range"]::-moz-range-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 25px rgba(255, 77, 109, 0.6);
+        }
+
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-top: 8px;
+        }
+
+        .slider-value {
+            text-align: center;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
+            margin-top: 12px;
+        }
+
+        /* ===== FINAL CHECKBOX ===== */
+        .final-check {
+            display: flex;
+            gap: 12px;
+            padding: 16px;
+            background: rgba(255, 77, 109, 0.05);
+            border: 1.5px solid rgba(255, 77, 109, 0.2);
+            border-radius: 12px;
+            margin-bottom: 32px;
+        }
+
+        .final-check input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .final-check label {
+            margin: 0;
+            font-size: 14px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            line-height: 1.5;
+        }
+
+        /* ===== BUTTON ===== */
+        .submit-btn {
+            width: 100%;
+            padding: 16px 24px;
+            background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255, 77, 109, 0.5);
+        }
+
+        .submit-btn:active:not(:disabled) {
+            transform: translateY(0);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        /* ===== SUCCESS SCREEN ===== */
+        .success-screen {
+            display: none;
+            text-align: center;
+            animation: popIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes popIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 24px;
+            display: inline-block;
+            animation: bounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .success-screen h2 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #ff4d6d, #ff8fa3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .success-screen p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .loading-dots {
+            display: inline-block;
+            margin: 20px 0;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--primary);
+            margin: 0 6px;
+            animation: pulse 1.4s infinite;
+        }
+
+        .dot:nth-child(1) { animation-delay: -0.4s; }
+        .dot:nth-child(2) { animation-delay: -0.2s; }
+
+        @keyframes pulse {
+            0%, 60%, 100% {
+                opacity: 0.3;
+                transform: translateY(0);
+            }
+            30% {
+                opacity: 1;
+                transform: translateY(-10px);
+            }
+        }
+
+        .success-status {
+            display: inline-block;
+            padding: 12px 24px;
+            background: rgba(255, 77, 109, 0.1);
+            border: 1px solid rgba(255, 77, 109, 0.3);
+            border-radius: 20px;
+            font-size: 14px;
+            color: #ff8fa3;
+            margin: 20px 0;
+            font-weight: 600;
+        }
+
+        .success-message {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.8s ease;
+            color: var(--text-secondary);
+            font-size: 15px;
+            margin-top: 24px;
+            line-height: 1.6;
+        }
+
+        .success-message.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .loading-dots.done {
+            display: none;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 600px) {
+            .form-container {
+                padding: 28px 18px;
+                border-radius: 20px;
+            }
+
+            .header h1 {
+                font-size: 28px;
+            }
+
+            label {
+                font-size: 14px;
+            }
+
+            .radio-option,
+            .checkbox-option {
+                padding: 10px 12px;
+            }
+
+            .success-screen h2 {
+                font-size: 26px;
+            }
+
+            .success-icon {
+                font-size: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- HEADER -->
+        <div class="header">
+            <h1>2 Tarfa Pyaar Application <span class="emoji">💌</span></h1>
+            <p>Ek taraf se pyaar ka zamana gaya.<br>Ab dono taraf se approval chahiye.</p>
+            <div class="status-badge">Relationship Protocol: PENDING 💀</div>
+        </div>
+
+        <!-- FORM -->
+        <div class="form-container" id="formContainer">
+            <form id="relationshipForm">
+                <!-- Q1: Name/Codename -->
+                <div class="form-group">
+                    <label for="name">Naam / Codename? <span class="label-emoji">🔐</span></label>
+                    <input type="text" id="name" name="name" placeholder="E.g. Rahi, Anonymous, The One" required>
+                </div>
+
+                <!-- Q2: Relationship Status -->
+                <div class="form-group">
+                    <label>Tumhara current relationship status? <span class="label-emoji">📊</span></label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="status" value="Single" required>
+                            <span>Single</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="status" value="Situationship mein phasa">
+                            <span>Situationship mein phasa hua/hu</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="status" value="Its complicated">
                             <span>It's complicated</span>
                         </label>
                         <label class="radio-option">
@@ -288,142 +626,4 @@
                         </label>
                         <label class="checkbox-option">
                             <input type="checkbox" name="wants" value="Random calls">
-                            <span>Random calls</span>
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="wants" value="Memes mandatory">
-                            <span>Memes bhejna mandatory</span>
-                        </label>
-                        <label class="checkbox-option">
-                            <input type="checkbox" name="wants" value="Mutually irritate">
-                            <span>Ek dusre ko irritate karna</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Q6: The Final Question -->
-                <div class="form-group">
-                    <label>Agar saamne wala bhi tumhe pasand karta hai, toh? <span class="label-emoji">💭</span></label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="ifmutual" value="Make it official" required>
-                            <span>Let's make it official ❤️</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="ifmutual" value="Baat karte hain">
-                            <span>Pehle thoda aur baat karte hain</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="ifmutual" value="Slow and steady">
-                            <span>Slow and steady</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="ifmutual" value="Nervous">
-                            <span>Main nervous ho gaya/gyi 💀</span>
-                        </label>
-                    </div>
-                </div>
-
-                <!-- Q7: Honest Message -->
-                <div class="form-group">
-                    <label>Ek honest message likho <span class="label-emoji">💬</span></label>
-                    <textarea id="message" name="message" placeholder="Jo dil mein hai, filter ke bina likho..." required></textarea>
-                </div>
-
-                <!-- Q8: Final Confirmation -->
-                <div class="form-group">
-                    <div class="final-check">
-                        <input type="checkbox" id="confirmation" name="confirmation" required>
-                        <label for="confirmation">Main confirm karta/karti hoon ki ye feelings genuine hain aur main mutual respect ke saath is connection ko explore karna chahta/chahti hoon.</label>
-                    </div>
-                </div>
-
-                <!-- SUBMIT -->
-                <button type="submit" class="submit-btn">SUBMIT MY FEELINGS ❤️</button>
-            </form>
-        </div>
-
-        <!-- SUCCESS SCREEN -->
-        <div class="success-screen" id="successScreen">
-            <div class="success-icon">💌</div>
-            <h2>APPLICATION RECEIVED</h2>
-            <p>Tumhari feelings successfully server tak pahunch gayi hain.</p>
-            
-            <div class="loading-dots">
-                <span class="dot"></span>
-                <span class="dot"></span>
-            </div>
-
-            <div class="success-status">Status: Awaiting 2-Tarfa Confirmation…</div>
-
-            <p class="success-message">
-                Because pyaar mein bhi backend approval zaroori hai. 💀❤️
-            </p>
-        </div>
-
-        <!-- FOOTER -->
-        <div class="footer">
-            Built with feelings & questionable decisions ✨
-        </div>
-    </div>
-
-    <script>
-        const form = document.getElementById('relationshipForm');
-        const formContainer = document.getElementById('formContainer');
-        const successScreen = document.getElementById('successScreen');
-        const feelingsSlider = document.getElementById('feelingsSlider');
-        const feelingsValue = document.getElementById('feelingsValue');
-
-        // Update slider value display
-        feelingsSlider.addEventListener('input', (e) => {
-            feelingsValue.textContent = e.target.value;
-        });
-
-        // Form submission
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-
-            // Basic validation
-            const name = document.getElementById('name').value.trim();
-            const message = document.getElementById('message').value.trim();
-
-            if (!name || !message) {
-                alert('Sab fields fill karo bhai 🙄');
-                return;
-            }
-
-            // Get form data (not sent anywhere, just collected for demo)
-            const formData = new FormData(form);
-            const data = {
-                name: formData.get('name'),
-                status: formData.get('status'),
-                feelings: formData.get('feelings'),
-                mutual: formData.get('mutual'),
-                wants: formData.getAll('wants'),
-                ifmutual: formData.get('ifmutual'),
-                message: formData.get('message'),
-                timestamp: new Date().toLocaleString()
-            };
-
-            // Log to console (data stays local, never sent)
-            console.log('Application Data (Local Only):', data);
-
-            // Show success screen
-            formContainer.style.display = 'none';
-            successScreen.style.display = 'block';
-
-            // Scroll to success
-            setTimeout(() => {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }, 200);
-        });
-
-        // Prevent form from actually submitting anywhere
-        form.onsubmit = function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            form.dispatchEvent(new Event('submit'));
-        };
-    </script>
-</body>
-    </html>
+                  
